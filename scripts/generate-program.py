@@ -21,7 +21,7 @@ ASSETS_DIR = ROOT / "assets" / "files"
 TEMPLATE_PATH = ASSETS_DIR / "workshop-program-template.docx"
 PROGRAM_HTML = ROOT / "program.html"
 COMMITTEE_HTML = ROOT / "committee.html"
-OUTPUT_DOCX = ASSETS_DIR / "ein26-program.docx"
+OUTPUT_DOCX = ASSETS_DIR / "ein27-program.docx"
 
 
 def w_tag(name: str) -> str:
@@ -133,7 +133,7 @@ def extract_program() -> dict:
         title = page_title.split("–", 1)[1].strip()
     else:
         short_title = normalize_spaces(hero.select_one(".page-title").get_text(" ", strip=True))
-        title = f"INFOCOM 2026 Workshop on {short_title}"
+        title = f"INFOCOM 2027 Workshop on {short_title}"
     subtitle = normalize_spaces(hero.select_one(".page-subtitle").get_text(" ", strip=True))
 
     meta = {}

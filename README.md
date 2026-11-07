@@ -1,6 +1,6 @@
-# INFOCOM 2026 Workshop on Embodied Intelligence Networks
+# INFOCOM 2027 Workshop on Embodied Intelligence Networks
 
-This repository contains the source code for the [INFOCOM 2026 Workshop on Embodied Intelligence Networks](https://infocom26-ein.netlify.app/) website.
+This repository contains the source code for the [INFOCOM 2027 Workshop on Embodied Intelligence Networks](https://infocom27-ein.netlify.app/) website. It is adapted from the [INFOCOM 2026 edition](https://github.com/baochunli/infocom26-ein).
 
 ## Scripts
 
@@ -8,9 +8,11 @@ The `scripts/` directory contains helper scripts for generating the downloadable
 
 In this workflow, `program.html` is the canonical source of truth for the workshop program. The Word and PDF files are generated artifacts derived from the HTML content and the Word template.
 
+> **Note:** `program.html` is currently a "coming soon" placeholder for EIN 2027. Fill in the 2027 schedule (sessions and papers) before running the script; it also still hard-codes the 2026 room name ("Fuyo"), which needs updating once the 2027 room is known.
+
 ### `scripts/generate-program.py`
 
-This script rebuilds `ein26-program.docx` from:
+This script rebuilds `ein27-program.docx` from:
 
 - `program.html` for the title, description, room, session times, and paper list
 - `committee.html` for the committee and chairs section
@@ -18,7 +20,7 @@ This script rebuilds `ein26-program.docx` from:
 
 It writes:
 
-- `assets/files/ein26-program.docx`
+- `assets/files/ein27-program.docx`
 
 ### Prerequisites
 
@@ -39,7 +41,7 @@ From the repository root:
 
 ```bash
 uv run scripts/generate-program.py
-pandoc assets/files/ein26-program.docx --pdf-engine=xelatex -V mainfont=Helvetica -o assets/files/ein26-program.pdf
+pandoc assets/files/ein27-program.docx --pdf-engine=xelatex -V mainfont=Helvetica -o assets/files/ein27-program.pdf
 ```
 
 ### Typical workflow
