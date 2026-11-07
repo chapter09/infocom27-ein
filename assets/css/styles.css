@@ -95,6 +95,37 @@ body {
     white-space: nowrap;
     text-decoration: none;
     /* remove underline for the title */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.site-logo {
+    display: block;
+    flex: none;
+    width: 28px;
+    height: 28px;
+}
+
+/* Keep the logo, title, and menu button on one row on phones; the title
+   wraps to two lines only on the narrowest screens. */
+@media (max-width: 720px) {
+    .nav {
+        gap: 0.75rem;
+    }
+
+    .site-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        gap: 0.5rem;
+        white-space: normal;
+        line-height: 1.25;
+    }
+
+    .site-logo {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .site-title:hover,

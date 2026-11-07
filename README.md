@@ -10,6 +10,22 @@ In this workflow, `program.html` is the canonical source of truth for the worksh
 
 > **Note:** `program.html` is currently a "coming soon" placeholder for EIN 2027. Fill in the 2027 schedule (sessions and papers) before running the script; it also still hard-codes the 2026 room name ("Fuyo"), which needs updating once the 2027 room is known.
 
+### `scripts/generate-icons.py`
+
+This script holds the EIN logo, a simple line-drawn robot face (rounded head, antenna, two dot eyes, a straight mouth, and small ears), and regenerates the logo and favicon set from it. Edit the `robot()` function to change the mark. It requires `rsvg-convert` (librsvg) and ImageMagick.
+
+```bash
+python3 scripts/generate-icons.py
+```
+
+It writes:
+
+- `assets/icons/logo.svg`: the robot on a blue tile, used as the SVG favicon and in the site header
+- `assets/icons/logo-full.svg`: the "EIN" wordmark beside the robot head, for slides and flyers
+- `assets/icons/favicon-16x16.png` and `assets/icons/favicon-32x32.png`
+- `assets/icons/safari-pinned-tab.svg`: a one-colour mask icon for Safari pinned tabs
+- `favicon.ico` (16, 32, and 48 px) and `apple-touch-icon.png` (180 × 180, opaque) in the site root
+
 ### `scripts/generate-program.py`
 
 This script rebuilds `ein27-program.docx` from:
