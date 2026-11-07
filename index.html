@@ -80,13 +80,14 @@
         <main class="page">
             <section class="page-hero page-section page-section--soft">
                 <div class="page-kicker">
-                    Workshop at IEEE INFOCOM 2027 · Honolulu, Hawaii, USA · May 24–27, 2027
+                    Workshop at IEEE INFOCOM 2027 · Honolulu, Hawaii, USA · May 24, 2027
                 </div>
                 <h1 class="page-title">Embodied Intelligence Networks (EIN)</h1>
                 <p class="page-subtitle">
-                    A half-day workshop on networking for embodied and agentic intelligence,
-                    bringing together researchers working on perception, reasoning, and action
-                    across virtual and physical environments.
+                    A full-day workshop on the network architectures, protocols, algorithms, and
+                    system designs for embodied intelligence networks, with two highlighted themes
+                    this year: multi-agent embodied systems, and virtual and real clients in
+                    embodied AI.
                 </p>
             </section>
 
@@ -99,45 +100,71 @@
 
                 <h2 class="section-title">Overview</h2>
                 <p>
-                    AI, as Andrej Karpathy referred to in
-                    <a href="https://x.com/karpathy/status/1744179910347039080?s=20"
-                        >his tweet in January 2024</a
-                    >
-                    as <span class="highlight">“IA (intelligence amplification)”</span>, is more
-                    than just independent long-running agents. It increasingly has the vibe of tools
-                    for thought, needing human interaction. Karpathy’s vision has quickly become a
-                    reality of Embodied Intelligence, where autonomous agents are increasingly
-                    moving from virtual environments into the physical world, interacting with
-                    humans, encompassing physical entities such as collaborative robots, smart
-                    glasses, and industrial IoT sensors. These autonomous agents are capable of
-                    real-time perception of their surroundings, and can take actions—but both their
-                    perception and their decisions critically depend on an efficient, low-latency,
-                    highly dependable, and adaptive network infrastructure.
+                    The Workshop on Embodied Intelligence Networks (EIN) studies the networks that
+                    embodied agents depend on. Embodied agents, such as collaborative robots,
+                    humanoids, smart glasses, and industrial IoT sensors, perceive and act in the
+                    physical world, increasingly under the direction of software agents that plan,
+                    call tools, and coordinate with one another. Together they form an
+                    <span class="highlight">embodied intelligence network</span>: an intelligent
+                    mesh of <em>actors</em> that communicate by message passing, adapt to their
+                    environment, understand human intent, coordinate multi-agent activities, and
+                    close real-time control loops.
                 </p>
                 <p>
-                    In both virtual and physical environments, with the ubiquity of tool use (e.g.,
-                    via the Model Context Protocol), the ways how autonomous agents interact and
-                    network with one another will inevitably evolve beyond traditional data
-                    transport and connectivity, and become an
-                    <span class="highlight">embodied intelligence network</span> with agentic
-                    workflows. Such a network resembles an intelligent mesh consisting of actors
-                    that communicate with each other by message passing, running agents who are
-                    capable of perceiving and adapting to the environment, understanding human
-                    intent, coordinating multi-agent activities, and providing semantic
-                    communication with real-time control loops.
+                    EIN covers the network architectures, protocols, algorithms, and system designs
+                    for such networks. Two shifts in embodied AI define this second edition.
+                </p>
+            </section>
+
+            <section class="page-section">
+                <h2 class="section-title">Highlighted Themes</h2>
+                <p>
+                    <span class="highlight">From one agent to many.</span> Embodied intelligence is
+                    rarely a single robot acting alone: a warehouse fleet shares one map and divides
+                    the work, a humanoid hands a part to a robot arm, and a software agent splits one
+                    request into subtasks for several physical agents. In these
+                    <em>multi-agent embodied systems</em>, the network is the medium of
+                    coordination. What each agent knows depends on which messages reach it and
+                    when, coordination messages compete with sensor streams for the same wireless
+                    links, and a collective decision is only as good as its least-informed
+                    participant. Networking many agents so that they act as a team, rather than as
+                    individuals that happen to share a channel, is our first highlighted theme.
                 </p>
                 <p>
-                    Now in its second edition, following the inaugural EIN workshop at IEEE INFOCOM
-                    2026 in Tokyo, this workshop aims to focus squarely on exciting ideas in the
-                    emerging topic of agentic computing, as well as how networking can adapt to the
-                    needs of agentic computing, in both virtual and physical environments. We encourage
-                    submissions of forward-looking research, novel system designs, and practical
-                    deployment experiences that deeply integrate networking with embodied
-                    perception, reasoning, and action. Papers with open-source artifacts &mdash;
-                    including source code and datasets &mdash; are especially welcome and strongly
-                    encouraged. The freshness of visionary and forward-looking ideas is more
-                    important than the completeness of theoretical proofs, and simplicity may not be
-                    inferior to complexity.
+                    <span class="highlight">Virtual and real, side by side.</span> Embodied systems
+                    now involve two populations of clients. <em>Virtual clients</em> (software
+                    agents, simulated robots, and digital-twin replicas) are cheap, fast, and
+                    plentiful, but only approximate the world; <em>real clients</em> (physical
+                    robots, wearables, and IoT devices) are scarce and costly, but they are where
+                    actions take effect. The two increasingly work together: a robot policy is
+                    trained across thousands of simulated robots and a handful of physical ones; a
+                    digital twin plans a maneuver that a real robot executes; a testbed surrounds a
+                    few real devices with thousands of virtual clients. The network between them
+                    determines whether they stay consistent, and whether what works in the virtual
+                    world holds in the real one. Networking virtual and real clients is our second
+                    highlighted theme.
+                </p>
+            </section>
+
+            <section class="page-section">
+                <h2 class="section-title">Workshop Themes</h2>
+                <p>
+                    The workshop is organized around four themes, each anchoring one of its four
+                    paper sessions:
+                </p>
+                <ul>
+                    <li><strong>Multi-agent embodied systems</strong> (highlighted)</li>
+                    <li><strong>Virtual and real clients in embodied AI</strong> (highlighted)</li>
+                    <li>
+                        <strong>Network infrastructure for embodied foundation models</strong>,
+                        such as vision-language-action (VLA) models and world models
+                    </li>
+                    <li><strong>Dependable embodied networks</strong></li>
+                </ul>
+                <p>
+                    EIN solicits short technical papers of up to six pages, each presented as a
+                    talk, and favors early results, visionary ideas, and open-source artifacts. See
+                    the <a href="cfp.html">Call for Papers</a> for the full list of topics.
                 </p>
             </section>
 
@@ -145,52 +172,58 @@
                 <h2 class="section-title">Important Dates</h2>
                 <dl class="date-grid">
                     <dt>Submission deadline</dt>
-                    <dd>To be announced</dd>
+                    <dd>December 29, 2026</dd>
 
                     <dt>Notification of acceptance</dt>
-                    <dd>To be announced</dd>
+                    <dd>February 2, 2027</dd>
 
                     <dt>Camera-ready manuscript due</dt>
-                    <dd>To be announced</dd>
+                    <dd>February 16, 2027</dd>
 
                     <dt>Workshop date</dt>
-                    <dd>To be announced (IEEE INFOCOM 2027 runs May 24–27, 2027)</dd>
+                    <dd>Monday, May 24, 2027</dd>
 
                     <dt>Workshop format</dt>
                     <dd>
-                        Half-day event held in conjunction with
+                        Full-day event held in conjunction with
                         <a href="https://infocom2027.ieee-infocom.org/">IEEE INFOCOM 2027</a>
                         in Honolulu, Hawaii, USA
                     </dd>
                 </dl>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: #6b7280">
-                    Dates will be announced once the IEEE INFOCOM 2027 workshop schedule is
-                    finalized; please check back for updates.
+                    Dates may be adjusted to follow the final IEEE INFOCOM 2027 workshop schedule;
+                    please check back for updates.
                 </p>
             </section>
 
             <section class="page-section">
                 <h2 class="section-title">Workshop Program</h2>
                 <p>
-                    The EIN 2027 workshop program, including the keynote and accepted paper
-                    presentations, will be posted on the
-                    <a href="program.html">program page</a> after acceptance notifications.
+                    EIN 2027 is a full-day workshop featuring a keynote, four one-hour paper
+                    sessions (one per theme), and a one-hour panel after lunch,
+                    <span class="highlight"
+                        >“Virtual clients, real clients, and the network between them,”</span
+                    >
+                    bringing together panelists from networking, multi-agent systems, robotics, and
+                    machine learning systems. The day closes with a Best Paper Award.
+                </p>
+                <p>
+                    Speakers and the detailed program will be announced on the
+                    <a href="program.html">program page</a>.
                 </p>
             </section>
 
             <section class="page-section">
-                <h2 class="section-title">Scope</h2>
+                <h2 class="section-title">Past Edition</h2>
                 <p>
-                    EIN sits at the intersection of agentic computing and next-generation
-                    networking. It asks how networks should evolve as embodied intelligence becomes
-                    mainstream and agents become ubiquitous &mdash; across edge, cloud, and physical
-                    environments.
-                </p>
-                <p>
-                    The workshop builds on prior work in distributed and federated learning, but
-                    focuses specifically on the networking challenges of real-time control loops,
-                    ultra-low-latency coordination, semantic communication, and multi-agent
-                    orchestration for embodied systems.
+                    <a href="https://infocom26-ein.netlify.app">EIN 2026</a> was held as a half-day
+                    workshop at IEEE INFOCOM 2026 in Tokyo, Japan, on May 18, 2026. It featured ten
+                    peer-reviewed papers, by authors from eight countries and regions, in three
+                    sessions: Federated Learning for Embodied Intelligence; Adaptive and
+                    Collaborative Embodied Intelligence; and Systems, Security, and Optimization
+                    for Embodied AI Infrastructure. György Dán (KTH Royal Institute of Technology)
+                    gave the keynote, “From Pixels to Policies: Securing the Perception–Action Loop
+                    in Networked Embodied Intelligence.”
                 </p>
             </section>
         </main>

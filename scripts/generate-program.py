@@ -116,7 +116,7 @@ def extract_committee() -> tuple[list[str], list[str]]:
             name = normalize_spaces(name_el.get_text(" ", strip=True))
             affiliation = normalize_spaces(aff_el.get_text(" ", strip=True)).lstrip("—").strip()
             members.append(f"{name} ({affiliation})")
-        if title in {"General Chair", "Technical Program Committee Co-Chairs"}:
+        if title in {"General Chair", "Workshop Chairs", "Technical Program Committee Co-Chairs"}:
             chairs.extend(members)
         else:
             committee.extend(members)
