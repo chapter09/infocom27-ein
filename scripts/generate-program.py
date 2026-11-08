@@ -120,6 +120,8 @@ def extract_committee() -> tuple[list[str], list[str]]:
             "General Chair",
             "Workshop Chair",
             "Workshop Chairs",
+            "Workshop General Co-Chairs",
+            "TPC Chair",
             "TPC Co-Chairs",
             "Technical Program Committee Co-Chairs",
         }:
