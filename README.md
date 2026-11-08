@@ -10,9 +10,22 @@ In this workflow, `program.html` is the canonical source of truth for the worksh
 
 > **Note:** `program.html` is currently a "coming soon" placeholder for EIN 2027. Fill in the 2027 schedule (sessions and papers) before running the script; it also still hard-codes the 2026 room name ("Fuyo"), which needs updating once the 2027 room is known.
 
+### `scripts/generate-logo.py`
+
+This script draws the EIN 2027 workshop logo shown on the home page: a line-drawn palm tree with a robot face in its crown and a network of nodes in its fronds, the "EIN" wordmark, Diamond Head, and waves, with "IEEE INFOCOM 2027", "Embodied Intelligence Networks", and "Honolulu, Hawaii" below. The lettering is set in Montserrat and converted to outlines, so the files need no web fonts. The script downloads Montserrat from the font's GitHub release each time it runs.
+
+```bash
+uv run scripts/generate-logo.py
+```
+
+It writes:
+
+- `assets/images/ein27-logo.svg`: for light backgrounds; use this one in slides, flyers, and posters
+- `assets/images/ein27-logo-dark.svg`: the same logo recoloured for the site's dark theme
+
 ### `scripts/generate-icons.py`
 
-This script holds the EIN logo, a simple line-drawn robot face (rounded head, antenna, two dot eyes, a straight mouth, and small ears), and regenerates the logo and favicon set from it. Edit the `robot()` function to change the mark. It requires `rsvg-convert` (librsvg) and ImageMagick.
+This script builds the favicon set from the robot face in the EIN 2027 logo (a domed head, an antenna with an orange ball, two dot eyes, and small ears), drawn in white on a teal tile. Edit the `robot()` function to change the mark. It requires `rsvg-convert` (librsvg) and ImageMagick.
 
 ```bash
 python3 scripts/generate-icons.py
@@ -20,8 +33,7 @@ python3 scripts/generate-icons.py
 
 It writes:
 
-- `assets/icons/logo.svg`: the robot on a blue tile, used as the SVG favicon and in the site header
-- `assets/icons/logo-full.svg`: the "EIN" wordmark beside the robot head, for slides and flyers
+- `assets/icons/logo.svg`: the robot on a teal tile, used as the SVG favicon
 - `assets/icons/favicon-16x16.png` and `assets/icons/favicon-32x32.png`
 - `assets/icons/safari-pinned-tab.svg`: a one-colour mask icon for Safari pinned tabs
 - `favicon.ico` (16, 32, and 48 px) and `apple-touch-icon.png` (180 × 180, opaque) in the site root

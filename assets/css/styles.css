@@ -95,20 +95,10 @@ body {
     white-space: nowrap;
     text-decoration: none;
     /* remove underline for the title */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
 }
 
-.site-logo {
-    display: block;
-    flex: none;
-    width: 28px;
-    height: 28px;
-}
-
-/* Keep the logo, title, and menu button on one row on phones; the title
-   wraps to two lines only on the narrowest screens. */
+/* Keep the title and menu button on one row on phones; the title wraps to
+   two lines only on the narrowest screens. */
 @media (max-width: 720px) {
     .nav {
         gap: 0.75rem;
@@ -117,14 +107,8 @@ body {
     .site-title {
         font-size: 0.9rem;
         letter-spacing: 0.02em;
-        gap: 0.5rem;
         white-space: normal;
         line-height: 1.25;
-    }
-
-    .site-logo {
-        width: 24px;
-        height: 24px;
     }
 }
 
@@ -314,6 +298,57 @@ body {
     background-color: var(--bg-elevated);
     box-shadow: var(--shadow-soft);
     border: 1px solid rgba(15, 23, 42, 0.03);
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* Home page hero: text beside the workshop logo */
+.hero-with-logo {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.hero-logo {
+    flex: none;
+    width: 270px;
+}
+
+.hero-logo img {
+    width: 100%;
+    height: auto;
+}
+
+/* Show the logo variant that matches the theme. */
+.hero-logo-light,
+[data-theme="dark"] .hero-logo-dark {
+    display: block;
+}
+
+.hero-logo-dark,
+[data-theme="dark"] .hero-logo-light {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .hero-with-logo {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+    }
+
+    .hero-logo {
+        order: -1;
+        width: min(72%, 260px);
+        margin: 0 auto;
+    }
 }
 
 /* Soft gradient overlay for the hero card */

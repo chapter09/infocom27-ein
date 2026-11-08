@@ -5,5 +5,6 @@ description = "Website and document generation helpers for the INFOCOM 2027 EIN 
 requires-python = ">=3.11"
 dependencies = [
     "beautifulsoup4>=4.12,<5",
+    "fonttools>=4.50,<5",
 ]
 

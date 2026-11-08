@@ -1,10 +1,10 @@
-"""Regenerate the EIN logo and favicon set.
+"""Regenerate the favicon set from the robot in the EIN 2027 logo.
 
-The mark is a simple line-drawn robot face: a rounded head outline with an
-antenna, two dot eyes, a straight mouth, and small ears. It is drawn on a
-64 x 64 grid with 4-unit strokes, and the head, eyes, mouth, and ears sit on
-multiples of 4 units, so they land on whole pixels in the 16 px and 32 px
-favicons.
+The mark is the robot face that hangs in the palm crown of the workshop logo
+(see scripts/generate-logo.py): a domed head, an antenna with an orange ball,
+two dot eyes, and small ears, drawn in white on a teal tile. It is drawn on a
+64 x 64 grid with 4-unit strokes, and its parts sit on multiples of 4 units, so
+they land on whole pixels in the 16 px and 32 px favicons.
 
 Requires rsvg-convert (librsvg) and ImageMagick: brew install librsvg imagemagick
 Run from anywhere: python3 scripts/generate-icons.py
@@ -16,47 +16,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ICONS = ROOT / "assets" / "icons"
-BLUE = "#2563eb"
+TEAL = "#529DA3"  # the logo's line colour
+ORANGE = "#F28E5D"  # the logo's accent colour
 
 
-def robot(color, stroke=4):
-    """Robot face on the 64 x 64 grid, centred horizontally."""
-    return f"""<g fill="none" stroke="{color}" stroke-width="{stroke:g}" stroke-linecap="round" stroke-linejoin="round">
-<rect x="14" y="22" width="36" height="32" rx="8"/>
-<path d="M32 16V22"/>
-<path d="M26 46H38"/>
+def robot(color, ball=None):
+    """Robot face on the 64 x 64 grid, centred; `ball` colours the antenna tip."""
+    head = "M14 48V40A18 18 0 0 1 50 40V48Q50 54 44 54H20Q14 54 14 48Z"
+    return f"""<g fill="none" stroke="{color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="{head}"/>
+<path d="M32 15V22"/>
 </g>
+<circle cx="32" cy="12" r="4" fill="{ball or color}"/>
 <g fill="{color}">
-<circle cx="32" cy="12" r="4"/>
-<circle cx="24" cy="32" r="4"/>
-<circle cx="40" cy="32" r="4"/>
-<rect x="8" y="32" width="4" height="12" rx="2"/>
-<rect x="52" y="32" width="4" height="12" rx="2"/>
+<circle cx="24" cy="40" r="4"/>
+<circle cx="40" cy="40" r="4"/>
+<rect x="8" y="34" width="4" height="14" rx="2"/>
+<rect x="52" y="34" width="4" height="14" rx="2"/>
 </g>"""
-
-
-def wordmark(x0, y0, height, stroke):
-    """Condensed geometric 'EIN' built from rectangles and one diagonal."""
-    h, w = height, stroke
-    e_w, n_w, space = 0.56 * h, 0.66 * h, 0.17 * h
-    arm = (h - w) / 2
-    shapes = [
-        # E
-        f'<rect x="{x0:g}" y="{y0:g}" width="{w:g}" height="{h:g}"/>',
-        f'<rect x="{x0:g}" y="{y0:g}" width="{e_w:g}" height="{w:g}"/>',
-        f'<rect x="{x0:g}" y="{y0 + arm:g}" width="{e_w * 0.9:g}" height="{w:g}"/>',
-        f'<rect x="{x0:g}" y="{y0 + h - w:g}" width="{e_w:g}" height="{w:g}"/>',
-    ]
-    xi = x0 + e_w + space
-    shapes.append(f'<rect x="{xi:g}" y="{y0:g}" width="{w:g}" height="{h:g}"/>')  # I
-    xn = xi + w + space
-    shapes += [  # N
-        f'<rect x="{xn:g}" y="{y0:g}" width="{w:g}" height="{h:g}"/>',
-        f'<rect x="{xn + n_w - w:g}" y="{y0:g}" width="{w:g}" height="{h:g}"/>',
-        f'<polygon points="{xn:g},{y0:g} {xn + w:g},{y0:g} '
-        f'{xn + n_w:g},{y0 + h:g} {xn + n_w - w:g},{y0 + h:g}"/>',
-    ]
-    return "\n".join(shapes), xn + n_w
 
 
 def svg(width, height, body):
@@ -73,23 +50,9 @@ def run(*cmd):
 def main():
     ICONS.mkdir(parents=True, exist_ok=True)
 
-    # Icon: white robot on a rounded blue tile (header logo and SVG favicon).
-    tile = f'<rect width="64" height="64" rx="14" fill="{BLUE}"/>'
-    (ICONS / "logo.svg").write_text(svg(64, 64, f"{tile}\n{robot('#fff')}"))
-
-    # Full logo: 'EIN' wordmark beside the robot, blue on transparent. The letters
-    # span the robot's head (y 20-56 on its grid) and the robot gets a heavier
-    # stroke to balance the bold letters.
-    letters, letters_end = wordmark(0, 20, 36, 8.4)
-    robot_x = letters_end + 2
-    (ICONS / "logo-full.svg").write_text(
-        svg(
-            robot_x + 58,
-            60,
-            f'<g fill="{BLUE}">\n{letters}\n</g>\n'
-            f'<g transform="translate({robot_x - 6:g} 0)">\n{robot(BLUE, stroke=5)}\n</g>',
-        )
-    )
+    # SVG favicon: white robot on a rounded teal tile.
+    tile = f'<rect width="64" height="64" rx="14" fill="{TEAL}"/>'
+    (ICONS / "logo.svg").write_text(svg(64, 64, f"{tile}\n{robot('#fff', ORANGE)}"))
 
     # Safari pinned-tab icon: solid black mark on transparent, 16 x 16 viewBox.
     (ICONS / "safari-pinned-tab.svg").write_text(
@@ -101,11 +64,11 @@ def main():
         # Apple touch icon: full-bleed opaque square; iOS applies its own corner mask.
         touch_svg = tmp / "touch.svg"
         touch_svg.write_text(
-            svg(64, 64, f'<rect width="64" height="64" fill="{BLUE}"/>\n{robot("#fff")}')
+            svg(64, 64, f'<rect width="64" height="64" fill="{TEAL}"/>\n{robot("#fff", ORANGE)}')
         )
         run("rsvg-convert", "-w", 180, "-h", 180, touch_svg, "-o", tmp / "touch.png")
         run(
-            "magick", tmp / "touch.png", "-background", BLUE, "-flatten", "-alpha", "off",
+            "magick", tmp / "touch.png", "-background", TEAL, "-flatten", "-alpha", "off",
             f"PNG24:{ROOT / 'apple-touch-icon.png'}",
         )
 
@@ -117,7 +80,7 @@ def main():
             tmp / "favicon-48.png", ROOT / "favicon.ico",
         )
 
-    print("Wrote assets/icons/{logo,logo-full,safari-pinned-tab}.svg, "
+    print("Wrote assets/icons/{logo,safari-pinned-tab}.svg, "
           "assets/icons/favicon-{16x16,32x32}.png, favicon.ico, apple-touch-icon.png")
 
 
