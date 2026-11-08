@@ -23,6 +23,16 @@ It writes:
 - `assets/images/ein27-logo.svg`: for light backgrounds; use this one in slides, flyers, and posters
 - `assets/images/ein27-logo-dark.svg`: the same logo recoloured for the site's dark theme
 
+### `scripts/generate-flyer.py`
+
+The "At a Glance" link in the navigation bar opens a one-page flyer, `assets/images/ein27-flyer.pdf`, with the important dates, workshop format, organizers, and a short call for papers. Its source is `scripts/flyer/ein27-flyer.html`; edit that file when the dates, committee, or call for papers change, then print it to PDF with headless Chrome (Google Chrome or Chromium is required, and its web fonts load from Google Fonts):
+
+```bash
+python3 scripts/generate-flyer.py
+```
+
+The script stops with an error if the flyer no longer fits on one page.
+
 ### `scripts/generate-icons.py`
 
 This script builds the favicon set from the robot face in the EIN 2027 logo (a domed head, an antenna with an orange ball, two dot eyes, and small ears), drawn in white on a teal tile. Edit the `robot()` function to change the mark. It requires `rsvg-convert` (librsvg) and ImageMagick.

@@ -1,0 +1,406 @@
+<!doctype html>
+<!--
+    Source of the EIN 2027 "At a Glance" flyer (assets/images/ein27-flyer.pdf).
+    Rebuild the PDF with: python3 scripts/generate-flyer.py
+    Keep the dates, committee, and call for papers in sync with the website.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>EIN 2027 At a Glance</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=block"
+        />
+        <style>
+            @page {
+                size: letter;
+                margin: 0;
+            }
+
+            :root {
+                --navy: #19345b;
+                --teal: #529da3;
+                --orange: #e9773f;
+                --panel: #f3f1ea;
+                --ink: #1f2933;
+                --muted: #5b6670;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .page {
+                width: 8.5in;
+                height: 11in;
+                padding: 0.45in 0.55in 0.4in;
+                display: flex;
+                flex-direction: column;
+                font-family: "Source Serif 4", Georgia, serif;
+                font-size: 9.6pt;
+                line-height: 1.38;
+                color: var(--ink);
+            }
+
+            /* Running header */
+            .running {
+                display: flex;
+                justify-content: space-between;
+                font-family: Montserrat, sans-serif;
+                font-weight: 600;
+                font-size: 9pt;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--teal);
+                padding-bottom: 0.08in;
+                border-bottom: 1.5pt solid var(--navy);
+            }
+
+            /* Logo and title */
+            .masthead {
+                display: flex;
+                align-items: center;
+                gap: 0.3in;
+                padding: 0.16in 0 0.14in;
+            }
+
+            .masthead img {
+                width: 1.22in;
+                flex: none;
+            }
+
+            .masthead h1 {
+                margin: 0;
+                font-family: Montserrat, sans-serif;
+                font-weight: 700;
+                font-size: 21pt;
+                line-height: 1.12;
+                color: var(--navy);
+            }
+
+            .masthead .tagline {
+                margin: 0.1in 0 0;
+                font-size: 11.5pt;
+                line-height: 1.35;
+                color: var(--teal);
+            }
+
+            .masthead .tagline strong {
+                color: var(--navy);
+                font-weight: 600;
+            }
+
+            /* Two columns */
+            .columns {
+                flex: 1;
+                display: grid;
+                grid-template-columns: 2.2in 1fr;
+                gap: 0.28in;
+                min-height: 0;
+            }
+
+            .sidebar {
+                background: var(--panel);
+                padding: 0.16in 0.16in 0.1in;
+                font-family: "Avenir Next", "Montserrat", sans-serif;
+                font-size: 8.8pt;
+                line-height: 1.3;
+            }
+
+            h2 {
+                margin: 0 0 0.06in;
+                padding-bottom: 0.04in;
+                font-family: Montserrat, sans-serif;
+                font-weight: 700;
+                font-size: 9.2pt;
+                letter-spacing: 0.02em;
+                color: var(--navy);
+                border-bottom: 1.2pt dotted var(--teal);
+            }
+
+            .sidebar section + section {
+                margin-top: 0.17in;
+            }
+
+            .sidebar dl,
+            .sidebar ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .sidebar dt,
+            .sidebar .name {
+                font-weight: 600;
+                color: var(--ink);
+            }
+
+            .sidebar dd {
+                margin: 0 0 0.035in;
+            }
+
+            .sidebar li {
+                margin-bottom: 0.035in;
+            }
+
+            .sidebar .affiliation {
+                display: block;
+                color: var(--muted);
+            }
+
+            .sidebar p {
+                margin: 0;
+            }
+
+            .sidebar .note {
+                margin-top: 0.08in;
+                font-family: "Source Serif 4", Georgia, serif;
+                font-style: italic;
+                font-size: 8pt;
+                color: var(--muted);
+            }
+
+            .main {
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+
+            .banner {
+                display: block;
+                width: 100%;
+                height: 2in;
+                object-fit: cover;
+                object-position: 50% 45%;
+                margin-bottom: 0.14in;
+            }
+
+            .main h2 {
+                font-size: 10pt;
+                color: var(--orange);
+                border: 0;
+                padding: 0;
+                margin-bottom: 0.05in;
+            }
+
+            .main p {
+                margin: 0 0 0.075in;
+                text-align: justify;
+                hyphens: auto;
+            }
+
+            .main ul {
+                margin: 0 0 0.08in;
+                padding-left: 0.17in;
+            }
+
+            .main li {
+                margin-bottom: 0.04in;
+                text-align: justify;
+                hyphens: auto;
+            }
+
+            .main li::marker {
+                color: var(--teal);
+            }
+
+            .main strong {
+                font-weight: 600;
+                color: var(--navy);
+            }
+
+            .main .tag {
+                font-family: Montserrat, sans-serif;
+                font-size: 6.6pt;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: var(--orange);
+                white-space: nowrap;
+            }
+
+            .url {
+                font-family: Montserrat, sans-serif;
+                font-weight: 600;
+                color: var(--navy);
+                text-decoration: none;
+                border-bottom: 1pt solid var(--orange);
+            }
+
+            footer {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 0.14in;
+                padding-top: 0.07in;
+                border-top: 0.75pt solid #c9ced3;
+                font-family: Montserrat, sans-serif;
+                font-weight: 500;
+                font-size: 8pt;
+                color: var(--teal);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <div class="running">
+                <span>Honolulu, Hawaii, USA</span>
+                <span>May 24, 2027</span>
+            </div>
+
+            <header class="masthead">
+                <img src="../../assets/images/ein27-logo.svg" alt="EIN 2027 logo" />
+                <div>
+                    <h1>INFOCOM 2027 Workshop on Embodied Intelligence Networks</h1>
+                    <p class="tagline">
+                        <strong>Full-day workshop · Monday, May 24, 2027</strong><br />
+                        Co-located with IEEE INFOCOM 2027 in Honolulu, Hawaii, USA
+                    </p>
+                </div>
+            </header>
+
+            <div class="columns">
+                <aside class="sidebar">
+                    <section>
+                        <h2>Important Dates</h2>
+                        <dl>
+                            <dt>Submission deadline</dt>
+                            <dd>December 29, 2026</dd>
+                            <dt>Notification of acceptance</dt>
+                            <dd>February 2, 2027</dd>
+                            <dt>Camera-ready due</dt>
+                            <dd>February 16, 2027</dd>
+                            <dt>Workshop date</dt>
+                            <dd>Monday, May 24, 2027</dd>
+                        </dl>
+                        <p class="note">
+                            Dates may be adjusted to follow the final IEEE INFOCOM 2027 workshop
+                            schedule; please check the website for updates.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Workshop Format</h2>
+                        <p>
+                            Full-day event held in conjunction with IEEE INFOCOM 2027: a keynote,
+                            four paper sessions, a panel, and a Best Paper Award.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Workshop Chairs</h2>
+                        <ul>
+                            <li>
+                                <span class="name">Hao Wang</span>
+                                <span class="affiliation">Stevens Institute of Technology, USA</span>
+                            </li>
+                            <li>
+                                <span class="name">Ningxin Su</span>
+                                <span class="affiliation"
+                                    >The Hong Kong University of Science and Technology
+                                    (Guangzhou), China</span
+                                >
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Steering Committee</h2>
+                        <ul>
+                            <li>
+                                <span class="name">Baochun Li (Chair)</span>
+                                <span class="affiliation">University of Toronto, Canada</span>
+                            </li>
+                            <li>
+                                <span class="name">Yusheng Ji</span>
+                                <span class="affiliation"
+                                    >National Institute of Informatics, Japan</span
+                                >
+                            </li>
+                            <li>
+                                <span class="name">Ruidong Li</span>
+                                <span class="affiliation">Kanazawa University, Japan</span>
+                            </li>
+                            <li>
+                                <span class="name">Min Song</span>
+                                <span class="affiliation">Stevens Institute of Technology, USA</span>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+
+                <main class="main">
+                    <img
+                        class="banner"
+                        src="../../assets/images/ein27-hawaii.jpg"
+                        alt="Watercolor illustration of robots and digital humans in front of Diamond Head, Honolulu"
+                    />
+
+                    <h2>Call for Papers</h2>
+                    <p>
+                        Embodied agents, from collaborative robots and humanoids to smart glasses
+                        and industrial IoT sensors, increasingly perceive and act in the physical
+                        world, often directed by software agents that plan, call tools, and
+                        coordinate with one another. Their perception and decisions depend on an
+                        efficient, low-latency, highly dependable, and adaptive network.
+                    </p>
+                    <p>
+                        After its first edition at INFOCOM 2026 in Tokyo, EIN returns as a full-day
+                        workshop on the network architectures, protocols, algorithms, and system
+                        designs for embodied intelligence networks. Topics include, but are not
+                        limited to:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Multi-agent embodied systems</strong>
+                            <span class="tag">Highlighted</span>: coordination and task allocation
+                            among embodied and software agents; agent protocols such as MCP and A2A;
+                            networking for robot fleets, humanoids, and wearables.
+                        </li>
+                        <li>
+                            <strong>Virtual and real clients in embodied AI</strong>
+                            <span class="tag">Highlighted</span>: learning across simulated and
+                            physical clients; sim-to-real transfer over the network; digital twins,
+                            simulators, and testbeds.
+                        </li>
+                        <li>
+                            <strong>Network infrastructure for embodied foundation models</strong>:
+                            distributed and streaming inference of vision-language-action (VLA)
+                            models and world models; edge computing; 6G and AI-native RAN.
+                        </li>
+                        <li>
+                            <strong>Dependable embodied networks</strong>: trust, safety, and
+                            security; safe behavior under network degradation; benchmarks, open
+                            datasets, and real-world deployments.
+                        </li>
+                    </ul>
+                    <p>
+                        We solicit short papers of up to six pages, including references, each
+                        presented as a talk. Papers with open-source
+                        artifacts are especially encouraged, and the freshness of visionary ideas
+                        matters more than the completeness of theoretical proofs. Accepted papers
+                        will appear in the IEEE INFOCOM 2027 workshop proceedings and be submitted
+                        to IEEE Xplore.
+                    </p>
+                </main>
+            </div>
+
+            <footer>
+                <span>IEEE INFOCOM 2027 Workshop on Embodied Intelligence Networks</span>
+                <span
+                    >More at
+                    <a class="url" href="https://infocom27-ein.netlify.app/"
+                        >infocom27-ein.netlify.app</a
+                    ></span
+                >
+            </footer>
+        </div>
+    </body>
+</html>
