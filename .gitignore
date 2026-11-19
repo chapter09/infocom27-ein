@@ -1,3 +1,10 @@
 *.csv
 *.numbers
 uv.lock
+
+.DS_Store
+
+# Organizer working files (TPC lists with email addresses, email templates, the
+# proposal). Kept local: the GitHub repo is public and the whole repo root is
+# deployed to the website.
+ws-files/
